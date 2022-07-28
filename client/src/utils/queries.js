@@ -1,6 +1,5 @@
-
-import gql from "graphql-tag";
-
+//const { gql } = require('@apollo/client');
+import gql from 'graphql-tag';
 export const GET_ME = gql`
   {
     me {

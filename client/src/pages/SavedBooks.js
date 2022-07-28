@@ -9,9 +9,12 @@ import { GET_ME } from '../utils/queries';
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
-  const userData = data?.me || {};
-
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  console.log(error)
+  if (loading) {
+    return <h1>LOADING</h1>
+  };
+  const userData = data?.me;
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
@@ -32,10 +35,6 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (loading) {
-    return <h2>LOADING...</h2>;
-  }
-
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
